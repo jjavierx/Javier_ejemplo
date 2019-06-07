@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Este webservice hace método para la eficiencia en negocio que usan productos en grandes cantidades.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="RegisterProduct">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultastock" type="tns:ConsultaStock" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ConsultaStock">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Sku" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RegisterProductResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RegisterSalidaProduct">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrarSalida" type="tns:RegistraSalidaProducto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RegistraSalidaProducto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Numero_salida" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad_salida" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sku" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RegisterSalidaProductResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="BuscarStockService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sku" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarStockServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarStockServiceResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizarStockService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultaStock" type="tns:ConsultaStock" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizarStockServiceResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="BuscarProductoService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sku" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscarProductoServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarProductoServiceResult" type="tns:ConsultaStock" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RegisterProductSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterProduct" />
+  </wsdl:message>
+  <wsdl:message name="RegisterProductSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterSalidaProductSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterSalidaProduct" />
+  </wsdl:message>
+  <wsdl:message name="RegisterSalidaProductSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterSalidaProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarStockServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarStockService" />
+  </wsdl:message>
+  <wsdl:message name="BuscarStockServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarStockServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="actualizarStockServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:actualizarStockService" />
+  </wsdl:message>
+  <wsdl:message name="actualizarStockServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:actualizarStockServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarProductoServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarProductoService" />
+  </wsdl:message>
+  <wsdl:message name="BuscarProductoServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarProductoServiceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceProductoSoap">
+    <wsdl:operation name="RegisterProduct">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Este método registra los productos</wsdl:documentation>
+      <wsdl:input message="tns:RegisterProductSoapIn" />
+      <wsdl:output message="tns:RegisterProductSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterSalidaProduct">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Este método registra la salida de los productos</wsdl:documentation>
+      <wsdl:input message="tns:RegisterSalidaProductSoapIn" />
+      <wsdl:output message="tns:RegisterSalidaProductSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarStockService">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Este método consulta el stock de los productos</wsdl:documentation>
+      <wsdl:input message="tns:BuscarStockServiceSoapIn" />
+      <wsdl:output message="tns:BuscarStockServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizarStockService">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Este método actualizar el stock del producto</wsdl:documentation>
+      <wsdl:input message="tns:actualizarStockServiceSoapIn" />
+      <wsdl:output message="tns:actualizarStockServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProductoService">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Este método valida el nombre de un producto</wsdl:documentation>
+      <wsdl:input message="tns:BuscarProductoServiceSoapIn" />
+      <wsdl:output message="tns:BuscarProductoServiceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceProductoSoap" type="tns:WebServiceProductoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterProduct">
+      <soap:operation soapAction="http://tempuri.org/RegisterProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterSalidaProduct">
+      <soap:operation soapAction="http://tempuri.org/RegisterSalidaProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarStockService">
+      <soap:operation soapAction="http://tempuri.org/BuscarStockService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarStockService">
+      <soap:operation soapAction="http://tempuri.org/actualizarStockService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProductoService">
+      <soap:operation soapAction="http://tempuri.org/BuscarProductoService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceProductoSoap12" type="tns:WebServiceProductoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterProduct">
+      <soap12:operation soapAction="http://tempuri.org/RegisterProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterSalidaProduct">
+      <soap12:operation soapAction="http://tempuri.org/RegisterSalidaProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarStockService">
+      <soap12:operation soapAction="http://tempuri.org/BuscarStockService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarStockService">
+      <soap12:operation soapAction="http://tempuri.org/actualizarStockService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProductoService">
+      <soap12:operation soapAction="http://tempuri.org/BuscarProductoService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServiceProducto">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Este webservice hace método para la eficiencia en negocio que usan productos en grandes cantidades.</wsdl:documentation>
+    <wsdl:port name="WebServiceProductoSoap" binding="tns:WebServiceProductoSoap">
+      <soap:address location="http://localhost:51577/WebServiceProducto.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceProductoSoap12" binding="tns:WebServiceProductoSoap12">
+      <soap12:address location="http://localhost:51577/WebServiceProducto.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
