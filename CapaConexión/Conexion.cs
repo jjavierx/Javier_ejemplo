@@ -11,7 +11,9 @@ namespace CapaConexion
 {
     public class Conexion
     {
+
         //Variables de instancia
+        //probando que shiet
 
         private String nombreBaseDeDatos;
 
