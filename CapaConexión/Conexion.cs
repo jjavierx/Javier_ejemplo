@@ -13,7 +13,10 @@ namespace CapaConexion
     {
 
         //Variables de instancia
-        //probando que shiet
+        //probando que shie
+
+        string hola;
+        string bye;
 
         private String nombreBaseDeDatos;
 
